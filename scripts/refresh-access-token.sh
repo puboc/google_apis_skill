@@ -27,11 +27,12 @@ response="$(
     --data-urlencode "grant_type=refresh_token"
 )"
 
-access_token="$(python3 - <<'PY' <<<"${response}"
+access_token="$(RESPONSE_JSON="${response}" python3 - <<'PY'
 import json
+import os
 import sys
 
-data = json.load(sys.stdin)
+data = json.loads(os.environ["RESPONSE_JSON"])
 token = data.get("access_token", "")
 if not token:
     raise SystemExit("Refresh response did not contain access_token")
@@ -39,11 +40,12 @@ print(token)
 PY
 )"
 
-expires_in="$(python3 - <<'PY' <<<"${response}"
+expires_in="$(RESPONSE_JSON="${response}" python3 - <<'PY'
 import json
+import os
 import sys
 
-data = json.load(sys.stdin)
+data = json.loads(os.environ["RESPONSE_JSON"])
 print(int(data.get("expires_in", 3600)))
 PY
 )"
