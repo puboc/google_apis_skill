@@ -1,0 +1,6 @@
+.DS_Store
+.env
+google_apis_oauth.env
+google_client_secret.json
+*.log
+*.tmp

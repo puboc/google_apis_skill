@@ -1,0 +1,4 @@
+interface:
+  display_name: "Google APIs"
+  short_description: "Google OAuth and API workflows"
+  default_prompt: "Use $google-apis to inspect Google OAuth setup and run a safe Google API workflow."
